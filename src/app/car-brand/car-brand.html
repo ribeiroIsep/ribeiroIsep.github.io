@@ -1,0 +1,10 @@
+<section class="listing">
+  <img
+    class="listing-photo"
+    [src]="carBrand().photo"
+    alt="Exterior photo of {{ carBrand().brand }}"
+    crossorigin
+  />
+  <h2 class="listing-heading">{{ carBrand().brand }}</h2>
+  <p class="listing-model">{{ carBrand().model }}, {{ carBrand().horsePower }}</p>
+</section>
