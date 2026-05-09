@@ -1,0 +1,558 @@
+@font-face {
+    font-family: "JetBrains Sans";
+    src: url("public/fonts/JetBrainsSans-Regular.woff2");
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("public/fonts/JetBrainsMono-Regular.woff2");
+}
+
+:root {
+    font-family: "JetBrains Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #000000;
+    text-align: center;
+}
+
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 320px;
+    min-height: 100vh;
+
+    background-image: url("public/background.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.nav-bar {
+    /* Usar display flex para um alinhamento moderno e flexível */
+    display: flex;
+    justify-content: space-between; /* Alinha o logo à esquerda e o menu à direita */
+    align-items: center; /* Centraliza os itens verticalmente */
+
+    background-color: #1a1a1a; /* Uma cor de fundo escura e suave */
+    color: #f1f1f1; /* Cor de texto clara para bom contraste */
+    padding: 1.2rem 2rem; /* Aumentar o padding para mais espaço */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Uma linha subtil na parte inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para dar um efeito de profundidade */
+}
+
+.button-nav-create {
+
+}
+
+.button-nav-log {
+    margin: 20px;
+}
+
+#logo {
+    font-size: 1.8rem;
+    font-weight: 100; /* Negrito para destacar */
+}
+
+nav {
+    /*float: right;*/
+}
+
+.nav-links {
+    list-style: none; /* Remover marcadores de lista */
+    margin: 0;
+    padding: 10px;
+    display: flex; /* Usar flex para os itens do menu */
+    align-items: center;
+    gap: 1.5rem; /* Espaço uniforme entre os links */
+    border: 0px solid rgba(255, 255, 255, 0.3);
+}
+
+.navLogo {
+    margin-top: 0;
+}
+
+.container-interaction button,
+.container-login button{
+    width: 100%;
+    height: 100%;
+    align-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+
+.container-interaction button:nth-child(2n+1),
+.container-login button:nth-child(2n+1){
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    color: #f1f1f1;
+    text-decoration: none; /* Remover sublinhado dos links */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    position: relative; /* Necessário para o efeito de transição da linha */
+    transition: color 0.3s ease; /* Transição suave na cor */
+    border-radius: 10px;
+}
+
+.nav-links li a:hover {
+    background-color: #4a90e2;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #4a90e2; /* A mesma cor do hover */
+    bottom: -5px; /* Posição da linha */
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.content {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #f1f1f1;
+    margin: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 29px;
+    line-height: 39px;
+    font-weight: 300;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.title2 {
+    margin-top: 9%;
+}
+
+#app {
+    max-width: 1600px;
+}
+
+.logo {
+    margin-top: -7%;
+    margin-left: 20%;
+    align-self: flex-start;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-form {
+    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin-top: 0;
+    color: rgba(255, 255, 255, 1);
+}
+
+.login-form input {
+    width: 43%;
+    height: 25px;
+    border: 2px solid rgba(6, 57, 112, 0.2);
+    border-radius: 7px;
+    padding: 5px;
+    background-color: rgba(25, 25, 28, 0.5);
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.login-form input:focus {
+    border: 1px solid rgba(6, 57, 112, 0.75);
+    outline: none;
+}
+
+.login-form input:hover {
+    background-image: radial-gradient(
+            farthest-corner at 77% 83%,
+            rgba(1, 197, 245, 0.5) 2%,
+            rgba(1, 126, 254, 0.5) 28%,
+            rgba(25, 25, 28, 0) 70%
+    );
+    border: 1px solid rgba(76, 166, 255, 0.2);
+    background-clip: padding-box;
+}
+
+.submit-button {
+    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
+    width: 25%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px; /* Cantos arredondados */
+    background-color: #065481; /* Cor de fundo principal */
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+}
+
+/* Efeito ao passar o rato (hover) */
+.submit-button:hover {
+    background-color: #053b5a; /* Cor mais escura no hover */
+    transform: translateY(-2px); /* Efeito de elevação subtil */
+}
+
+/* Efeito ao clicar no botão */
+.submit-button:active {
+    transform: translateY(0); /* Retorna à posição original */
+}
+
+
+.counter {
+    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 60px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.counter-interaction {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px 0;
+    width: 470px;
+    justify-content: space-between;
+}
+
+.counter-interaction button {
+    width: 48%;
+    height: 47%;
+    align-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 120px;
+    font-size: 68px;
+    text-align: center;
+}
+
+.counter-interaction button:nth-child(2n+1) {
+    margin-right: 14px;
+}
+
+.counter-interaction button:disabled {
+    color: rgba(255, 255, 255, 0.5);
+    background-image: none;
+    border-color: inherit;
+}
+
+.counter-info {
+    width: 360px;
+    height: 345px;
+    margin-right: 27px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(25, 25, 28, 0.5);
+    border-radius: 29px;
+}
+
+.counter-text {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 60px;
+    margin-bottom: 28px;
+
+}
+
+.counter-value {
+    font-weight: 200;
+    font-size: 170px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+button {
+    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
+    background-color: rgba(25, 25, 28, 0.5);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 1);
+}
+
+.signUp {
+    position: absolute;
+    margin-right: 25px;
+}
+
+button:hover {
+    background-image: radial-gradient(
+            farthest-corner at 77% 83%,
+            rgba(1, 197, 245, 0.5) 2%,
+            rgba(1, 126, 254, 0.5) 28%,
+            rgba(25, 25, 28, 0) 70%
+    );
+    border: 1px solid rgba(76, 166, 255, 0.2);
+    background-clip: padding-box;
+}
+
+.technologies {
+    margin-bottom: 36px;
+    align-self: center;
+}
+
+.technologies img {
+    max-width: fit-content;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.car-card {
+    background-color: rgba(5,77,112, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    color: #f1f1f1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.car-card h2 {
+    margin-top: 0;
+    color: #4a90e2;
+}
+
+.car-card p {
+    margin: 5px 0;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Escondido por padrão */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.create-car-form-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 50px;
+    border-radius: 29px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    min-width: 200px;
+    width: 30%;
+    position: relative;
+}
+
+.create-car-form-container h2 {
+    margin-top: 0;
+    color: #123a6a;
+}
+
+.create-car-form-container label,
+.create-car-form-container input,
+.create-car-form-container button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+
+}
+
+.create-car-form-container input {
+    height: 20px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid rgba(6, 57, 112, 0.2);
+    background-color: rgba(25, 25, 28, 0.5);
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.create-car-form-container input:focus {
+    border: 1px solid rgba(6, 57, 112, 0.75);
+    outline: none;
+}
+
+.create-car-form-container input:hover {
+    background-image: radial-gradient(
+            farthest-corner at 77% 83%,
+            rgba(1, 197, 245, 0.5) 2%,
+            rgba(1, 126, 254, 0.5) 28%,
+            rgba(25, 25, 28, 0) 70%
+    );
+    border: 1px solid rgba(76, 166, 255, 0.2);
+    background-clip: padding-box;
+}
+
+.create-car-form-container button.close-button {
+    position: absolute;
+    top: 0px;
+    right: -25%;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+.create-car-form-container .submit-button {
+    width: 40%;
+    margin: 20px auto 0;
+}
+
+@media (max-width: 875px) {
+
+    .logo {
+        margin-top: 10px;
+    }
+
+    .title {
+        margin-bottom: 30px;
+    }
+
+    .login-form input {
+        width: 100%;
+    }
+
+    .submit-button {
+        width: 50%;
+    }
+
+    .nav-links {
+        display: none;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        background-color: #333;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+    }
+
+    .nav-links.active {
+        display: block;
+    }
+
+    .nav-links li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .burger {
+        display: block;
+        float: right;
+        margin-top: 15px;
+    }
+
+    .burger.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .burger.active .line2 {
+        opacity: 0;
+    }
+
+    .burger.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .counter {
+        flex-direction: column;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .counter-info {
+        width: 100%;
+        height: 300px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .counter-interaction {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        width: auto;
+    }
+
+    .counter-interaction button {
+        width: 47%;
+        height: 100px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
