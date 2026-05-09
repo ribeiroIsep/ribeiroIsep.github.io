@@ -1,40 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="/styles/index.css">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/webstorm-icon-logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WS playground</title>
+  <!--  Import styles-->
+  <link rel="stylesheet" href="/style.css">
+  <!--  Import Vue.js-->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
+
 <body>
-    <div class="wrapper">
-        <main>
-            <h1>This is a noob trying something!</h1>
-            <p class="description">Made in Portugal!</p>
-            <hr>
-            <section>
-                <h2>Coffee</h2>
-<!--                <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="coffee icon"/>-->
-                <article class="item">
-                    <p class="left">French Vanilla</p><p class="right">3.00</p>
-                </article>
-                <article class="item">
-                    <p class="left">Caramel Macchiato</p><p class="right">3.75</p>
-                </article>
-                <article class="item">
-                    <p class="left">Pumpkin Spice</p><p class="right">3.50</p>
-                </article>
-                <article class="item">
-                    <p class="left">Hazelnut</p><p class="right">4.00</p>
-                </article>
-                <article class="item">
-                    <p class="left">Mocha</p><p class="right">4.50</p>
-                </article>
-            </section>
-        </main>
-        <hr>
-        <footer>
-            Copyright &copy; R1b3z 2025
-        </footer>
+
+  <div class="container">
+    <nav>
+      <ul class="nav-links">
+        <div class ="navLogo" id="logo">Car APP</div>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </div>
+
+<header class="logo">
+  <a href="https://github.com/R1b3z/carAPP">
+    <img src="/car-logo.webp" alt="Car APP logo" width="90">
+  </a>
+</header>
+<main id="app">
+  <h1 class="title">
+    Hello Stranger :) <br /> Welcome to the Car App!
+  </h1>
+  <section class="counter">
+    <div class="counter-info">
+      <p class="counter-text">Counter is</p>
+      <p class="counter-value" id="counter-value"></p>
     </div>
+    <div class="counter-interaction">
+      <button id="increaseByOne" type="button">+1</button>
+      <button id="increaseByTwo" type="button">+2</button>
+      <button id="decreaseByOne" type="button">-1</button>
+      <button id="decreaseByTwo" type="button">-2</button>
+    </div>
+  </section>
+</main>
+<footer class="technologies">
+  <img src="/technologies.svg" alt="List of supported technologies">
+</footer>
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>
