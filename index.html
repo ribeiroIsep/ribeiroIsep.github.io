@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foo — O Futuro é Beta</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(138, 92, 246, 0.15);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8a5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: #a0a0b0;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #8a5cf6;
+        }
+
+        .btn-nav {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #8a5cf6, #6d28d9);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(138, 92, 246, 0.4);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(138, 92, 246, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(138, 92, 246, 0.1);
+            border: 1px solid rgba(138, 92, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #a78bfa;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            max-width: 800px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #8a5cf6, #06b6d4, #8a5cf6);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #8888a0;
+            max-width: 580px;
+            margin-bottom: 48px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            background: linear-gradient(135deg, #8a5cf6, #6d28d9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(138, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(138, 92, 246, 0.02);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8a5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b6b80;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            padding: 100px 20px 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: #6b6b80;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 60px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8a5cf6, transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 92, 246, 0.2);
+            box-shadow: 0 20px 60px rgba(138, 92, 246, 0.08);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .icon-purple { background: rgba(138, 92, 246, 0.15); }
+        .icon-cyan { background: rgba(6, 182, 212, 0.15); }
+        .icon-green { background: rgba(34, 197, 94, 0.15); }
+        .icon-orange { background: rgba(249, 115, 22, 0.15); }
+        .icon-pink { background: rgba(236, 72, 153, 0.15); }
+        .icon-blue { background: rgba(59, 130, 246, 0.15); }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #f0f0f0;
+        }
+
+        .feature-card p {
+            color: #6b6b80;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== CODE BLOCK SECTION ===== */
+        .code-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .code-text {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .code-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .code-text p {
+            color: #6b6b80;
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .code-block {
+            flex: 1;
+            background: #12121a;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 32px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 2;
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .code-block::before {
+            content: '● ● ●';
+            display: block;
+            color: #444;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .code-keyword { color: #c084fc; }
+        .code-string { color: #34d399; }
+        .code-func { color: #60a5fa; }
+        .code-comment { color: #555; }
+        .code-number { color: #f59e0b; }
+
+        /* ===== PRICING / CTA ===== */
+        .cta-section {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(138, 92, 246, 0.08), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            color: #6b6b80;
+            font-size: 1.1rem;
+            margin-bottom: 48px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 60px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .testimonial-card .stars {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card blockquote {
+            color: #b0b0c0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8a5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: white;
+        }
+
+        .author-info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        .author-info .role {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8a5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: #555;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8a5cf6;
+        }
+
+        .footer-copy {
+            color: #333;
+            font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .features,
+            .testimonials {
+                grid-template-columns: 1fr;
+                padding: 0 24px 60px;
+            }
+
+            .code-section {
+                flex-direction: column;
+                padding: 60px 24px;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Foo</div>
+        <ul class="nav-links">
+            <li><a href="#features">Funcionalidades</a></li>
+            <li><a href="#docs">Documentação</a></li>
+            <li><a href="#testimonials">Testemunhos</a></li>
+            <li><a href="#pricing">Preços</a></li>
+        </ul>
+        <button class="btn-nav">Começar Agora</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Beta Público — v0.9.2
+        </div>
+        <h1>Construa o futuro<br>com <span class="gradient-text">Foo</span></h1>
+        <p>Uma plataforma de próxima geração para desenvolvedores que querem criar aplicações rápidas, seguras e escaláveis — sem complicação.</p>
+        <div class="hero-buttons">
+            <button class="btn-primary">Experimentar Beta →</button>
+            <button class="btn-secondary">Ver Documentação</button>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number">50ms</div>
+            <div class="stat-label">Tempo de resposta médio</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">12k+</div>
+            <div class="stat-label">Desenvolvedores em beta</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime garantido</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Avaliação média</div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <div class="section-title" id="features">
+        <h2>Porquê Foo?</h2>
+        <p>Tudo o que precisas para construir aplicações modernas, num único lugar.</p>
+    </div>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon icon-purple">⚡</div>
+            <h3>Ultra Rápido</h3>
+            <p>Performance de nível nativo com tempos de resposta abaixo de 50ms. Otimizado para escala desde o primeiro dia.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon icon-cyan">🔒</div>
+            <h3>Segurança Nativa</h3>
+            <p>Criptografia end-to-end, autenticação multi-fator e compliance com GDPR incluídos por defeito.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon icon-green">🧩</div>
+            <h3>Plugin System</h3>
+            <p>Ecossistema aberto de plugins com mais de 200 integrações prontas a usar. Extensível a 100%.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon icon-orange">📊</div>
+            <h3>Analytics em Tempo Real</h3>
+            <p>Dashboards intuitivos com métricas ao vivo. Toma decisões baseadas em dados, não em palpites.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon icon-pink">🤖</div>
+            <h3>AI Integrada</h3>
+            <p>Assistente inteligente que ajuda a debugar, otimizar e gerar código automaticamente.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon icon-blue">🌍</div>
+            <h3>Multi-Região</h3>
+            <p>Deploy global com CDN edge em mais de 40 regiões. Latência mínima, onde quer que estejas.</p>
+        </div>
+    </section>
+
+    <!-- CODE SECTION -->
+    <section class="code-section" id="docs">
+        <div class="code-text">
+            <h2>Simples de usar.<br>Poderoso de verdade.</h2>
+            <p>Com apenas três linhas de código, tens uma aplicação completa a correr. Foo cuida de toda a complexidade por ti.</p>
+            <button class="btn-primary">Ler a Docs →</button>
+        </div>
+        <div class="code-block">
+            <span class="code-comment">// Inicializar Foo em 3 linhas</span><br>
+            <span class="code-keyword">import</span> { Foo } <span class="code-keyword">from</span> <span class="code-string">'@foo/core'</span>;<br><br>
+            <span class="code-keyword">const</span> app = <span class="code-keyword">new</span> <span class="code-func">Foo</span>({<br>
+            &nbsp;&nbsp;name: <span class="code-string">'meu-projeto'</span>,<br>
+            &nbsp;&nbsp;region: <span class="code-string">'eu-west'</span>,<br>
+            &nbsp;&nbsp;ai: <span class="code-number">true</span>,<br>
+            });<br><br>
+            <span class="code-keyword">await</span> app.<span class="code-func">deploy</span>();<br>
+            <span class="code-comment">// ✅ Pronto! A tua app está live.</span>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <div class="section-title" id="testimonials">
+        <h2>O que dizem os devs</h2>
+        <p>Feedback real da nossa comunidade beta.</p>
+    </div>
+
+    <section class="testimonials">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Foo mudou completamente o meu workflow. O que antes levava horas, agora faz em minutos. A AI é insana."</blockquote>
+            <div class="testimonial-author">
+                <div class="author-avatar">MA</div>
+                <div class="author-info">
+                    <div class="name">Miguel Almeida</div>
+                    <div class="role">Full-Stack Dev @ TechCorp</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"A performance é real. Migramos a nossa API para Foo e os tempos de resposta caíram 70%. Impressionante."</blockquote>
+            <div class="testimonial-author">
+                <div class="author-avatar">SR</div>
+                <div class="author-info">
+                    <div class="name">Sofia Rodrigues</div>
+                    <div class="role">CTO @ StartupXYZ</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Finalmente uma plataforma que entende o que os devs precisam. A API é limpa, a docs é excelente."</blockquote>
+            <div class="testimonial-author">
+                <div class="author-avatar">JC</div>
+                <div class="author-info">
+                    <div class="name">João Costa</div>
+                    <div class="role">Backend Engineer @ CloudCo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="pricing">
+        <h2>Pronto para começar?</h2>
+        <p>Junte-se a mais de 12.000 developers a usar Foo. Grátis durante o beta.</p>
+        <div class="cta-buttons">
+            <button class="btn-primary">Criar Conta Grátis →</button>
+            <button class="btn-secondary">Falar com Vendas</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Foo</div>
+        <div class="footer-links">
+            <a href="#">Docs</a>
+            <a href="#">GitHub</a>
+            <a href="#">Discord</a>
+            <a href="#">Twitter</a>
+            <a href="#">Privacidade</a>
+        </div>
+        <div class="footer-copy">© 2025 Foo Inc. Todos os direitos reservados.</div>
+    </footer>
+
+</body>
+</html>
